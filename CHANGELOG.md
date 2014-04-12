@@ -1,3 +1,6 @@
+### 1.2.2
+- Obey database number specified in Laravel's Redis configuration.
+
 ### 1.2.1
 - Reverted PHP requirement to 5.4.
 

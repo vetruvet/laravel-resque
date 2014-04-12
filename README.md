@@ -15,7 +15,7 @@ This package allows you to connect to Resque when using `Queue`.
 First you need to add the following to your project's `composer.json`:
 
     "require": {
-    	"awellis13/laravel-resque": "1.2.1"
+    	"awellis13/laravel-resque": "1.2.2"
     }
 
 Now you need to run the following to install the package:
