@@ -5,6 +5,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
 use Config;
 use Resque;
+use Resque_Redis;
 use Resque_Worker;
 use Resque_Log;
 
@@ -52,6 +53,12 @@ class ListenCommand extends Command {
 		$interval = $this->input->getOption('interval');
 
 		// Connect to redis
+
+		if (Config::has('database.redis.default.prefix'))
+		{
+			Resque_Redis::prefix(Config::get('database.redis.default.prefix'));
+		}
+
 		Resque::setBackend(Config::get('database.redis.default.host').':'.Config::get('database.redis.default.port', 6379), Config::get('database.redis.default.database', 0));
 
 		// Launch worker

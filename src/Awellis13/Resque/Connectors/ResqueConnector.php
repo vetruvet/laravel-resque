@@ -2,6 +2,7 @@
 
 use Config;
 use Resque;
+use Resque_Redis;
 use ResqueScheduler;
 use Awellis13\Resque\ResqueQueue;
 use Illuminate\Queue\Connectors\ConnectorInterface;
@@ -34,6 +35,11 @@ class ResqueConnector implements ConnectorInterface {
 		if (!isset($config['database']))
 		{
 			$config['database'] = 0;
+		}
+
+		if (!empty($config['prefix']))
+		{
+			Resque_Redis::prefix($config['prefix']);
 		}
 
 		Resque::setBackend($config['host'].':'.$config['port'], $config['database']);
